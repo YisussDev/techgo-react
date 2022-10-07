@@ -62,21 +62,21 @@ const NavBar = () => {
         <div className='controls_nav'>
           {
           !user?
-              <div className='button_sidebar' onClick={()=> navigate('/login')}>
+              <div title='Login' className='button_sidebar' onClick={()=> navigate('/login')}>
                 <FaUser />
               </div>
               :
-              <div className='button_sidebar' style={{color: 'green'}} onClick={()=> navigate('/user')}>
+              <div title='Profile' className='button_sidebar' style={{color: 'green'}} onClick={()=> navigate('/user')}>
                 <FaUser />
               </div>
           }
-          <div className='button_sidebar'>
+          <div title='Purchases' className='button_sidebar'>
             <FaShoppingBag />
           </div>
-          <div className='button_sidebar' onClick={openSidebar}>
+          <div title='Cart' className='button_sidebar' onClick={openSidebar}>
             <FaShoppingCart />
           </div>
-          {user && <div onClick={closeSesion} className='button_sidebar close_sesion' style={{color: 'var(--color-thirty)'}}>
+          {user && <div title='Logout' onClick={closeSesion} className='button_sidebar close_sesion' style={{color: 'var(--color-thirty)'}}>
                       <BsXCircleFill />
                   </div>
           }

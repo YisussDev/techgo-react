@@ -1,0 +1,44 @@
+.footer_bar {
+    height: 100px;
+    width: 100%;
+    background-color: var(--color-secondary);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+    color: white;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+}
+.footer_bar p {
+    margin: 0;
+    padding: 0;
+}
+.footer_social{
+    height: 50px;
+    display: flex;
+    min-width: 100px;
+    column-gap: 10px;
+}
+.footer_social > a{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: var(--color-thirty);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    transition:  all .4s;
+}
+.footer_social > a:hover{
+    background-color: var(--color-first);
+    cursor: pointer;
+}
+.footer_social > a > svg {
+    color: white;
+    pointer-events: none;
+}

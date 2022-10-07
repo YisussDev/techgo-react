@@ -13,6 +13,7 @@ import { setUser } from './store/slices/user.slice';
 import { getCartThunk } from './store/slices/cart.slice';
 import User from './pages/User/User';
 import Register from './pages/Register/Register';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const token = localStorage.getItem('token')
@@ -42,6 +43,7 @@ function App() {
         <Route path='/product/:id' element={<ProductDetail />} />
         <Route path='/search/:name' element={<SearchPage />} />
       </Routes>
+      <Footer />
     </HashRouter>
   );
 }

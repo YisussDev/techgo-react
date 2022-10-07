@@ -36,11 +36,18 @@ const Home = () => {
       dispatch(CHANGELOADING(false))
     }, 1000)
   }
+  const sendPriceFilter = e =>{
+    e.preventDefault()
+    const min = parseInt(e.target.min.value)
+    const max = parseInt(e.target.max.value)
+    const filterPrice = products.filter(product => product.price > min && product.price < max)
+    setData(filterPrice)
+  }
   
 
   return (
     <div className="home">
-      <Filters categories={categories} sendFilter={sendFilter} allProducts={allProducts} />
+      <Filters categories={categories} sendFilter={sendFilter} allProducts={allProducts} sendPriceFilter={sendPriceFilter} />
       {
         data.map(res=>{
           return <Cards

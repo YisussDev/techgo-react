@@ -4,7 +4,9 @@ import { useParams } from 'react-router-dom'
 import './ProductDetail.css'
 import { BiPlus, BiMinus, BiCart } from 'react-icons/bi'
 import { CHANGELOADING } from '../../store/slices/loading.slice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import getConfig from '../../utils/getConfig'
+import { getCartThunk } from '../../store/slices/cart.slice'
 
 
 const ProducDetail = () => {
@@ -12,6 +14,7 @@ const ProducDetail = () => {
   const [data, setData]= useState([])
   const [imagePosition, setImagePosition] = useState(0)
   const [itemSelected, setItemSelected] = useState(1)
+  const {cart} = useSelector(state => state)
   const {id} = useParams()
 
   useEffect(()=>{
@@ -47,6 +50,25 @@ const ProducDetail = () => {
   const buttonUnSelected = {
     border: '2px solid white',
     borderRadius: '10px'
+  }
+  const purchaseProduct = () => {
+    const find = cart.filter(res => res.id === parseInt(id))
+    if(find[0]){
+      const productReload = {
+        id: parseInt(id),
+        newQuantity: parseInt(find[0].productsInCart.quantity) + itemSelected
+      }
+      axios.patch('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productReload, getConfig())
+      .then(()=> dispatch(getCartThunk()))
+    }
+    else{
+      const productNew= {
+        id: parseInt(id),
+        quantity: itemSelected
+      }
+      axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productNew, getConfig())
+      .then(()=> dispatch(getCartThunk()))
+    }
   }
   
 
@@ -85,7 +107,7 @@ const ProducDetail = () => {
               </div>
             </div>
           </div>
-          <button><strong>Add to cart <BiCart /></strong></button>
+          <button onClick={purchaseProduct}><strong>Add to cart <BiCart /></strong></button>
         </div>
       </div>
     </div>

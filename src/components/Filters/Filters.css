@@ -41,6 +41,13 @@
     color: white;
     background-color: var(--color-thirty);
 }
+.price_option > form > button {
+    margin: 10px 0;
+    height: 40px;
+    background-color: var(--color-first);
+    color: white;
+    width: 100px;
+}
 .category_option{
     max-height: 40px;
     overflow: hidden;

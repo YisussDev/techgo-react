@@ -5,27 +5,32 @@ import { BsFillCartFill } from 'react-icons/bs'
 import axios from 'axios'
 import getConfig from '../../utils/getConfig'
 import { getCartThunk } from '../../store/slices/cart.slice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Cards = ({title, productImgs, id, price, category}) => {
   const dispatch = useDispatch()
+  const {cart} = useSelector(state => state)
 
 
-  const addToCart = (data) => {
-    const product = {
-      id: data,
-      quantity: 1
-    }
+  const addToCart = (id) => {
 
-      axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/cart', product, getConfig())
-      .then(res => dispatch(getCartThunk()))
-      .catch(res => {
-        if(res.response.status === 400){
-          alert('ya existe')
-        }
+    const find = cart.filter(res => res.id === parseInt(id))
+    if(find[0]){
+      const productReload = {
+        id: parseInt(id),
+        newQuantity: parseInt(find[0].productsInCart.quantity) + 1
       }
-
-        )
+      axios.patch('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productReload, getConfig())
+      .then(()=> dispatch(getCartThunk()))
+    }
+    else{
+      const productNew= {
+        id: parseInt(id),
+        quantity: 1
+      }
+      axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productNew, getConfig())
+      .then(()=> dispatch(getCartThunk()))
+    }
   }
 
   return (

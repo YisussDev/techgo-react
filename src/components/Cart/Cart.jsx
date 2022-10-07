@@ -14,7 +14,6 @@ const Cart = ({isOpen, closeSidebar}) => {
   const purchaseCart = () => {
     axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/purchases',{},getConfig())
     .then(() => dispatch(getCartThunk()))
-    .then(() => window.location.reload())
     .catch(error => console.log(error))
   }
 
@@ -25,13 +24,27 @@ const Cart = ({isOpen, closeSidebar}) => {
 
   return (
     <div className={`sidebar ${isOpen&&"show"}` }>
-        <ul>
+        {
+          cart[0]?
+            (
+            <>
+            <ul>
             {
-              cart.map((res, ind) => <ProductInCart key={ind} title={res.title} quantity={res.productsInCart?.quantity} />)
+              cart.map((res, ind) => <ProductInCart key={res.id} id={res.id} title={res.title} quantity={res.productsInCart?.quantity} />)
             }
-        </ul>
-        <button className='close_button' onClick={closeSidebar}><FaArrowCircleRight /></button>
-        <button className='purchase_button' onClick={purchaseCart}>Purchase</button>
+            </ul>
+            <button className='close_button' onClick={closeSidebar}><FaArrowCircleRight /></button>
+            <button className='purchase_button' onClick={purchaseCart}>Purchase</button>
+            </>
+            )
+            :
+            (
+            <>
+            <button className='close_button' onClick={closeSidebar}><FaArrowCircleRight /></button>
+            <img className='empty_cart' src="./images/empty-cart.png" alt="" />
+            </>
+            )
+        }
     </div>
   )
 }

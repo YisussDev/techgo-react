@@ -1,7 +1,7 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
-import Favorites from './pages/Favorites/Favorites';
+import SearchPage from './pages/SearchPage/SearchPage';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
@@ -36,7 +36,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/product/:id' element={<ProductDetail />} />
-        <Route path='/favorites' element={<Favorites />} />
+        <Route path='/search/:name' element={<SearchPage />} />
       </Routes>
     </HashRouter>
   );

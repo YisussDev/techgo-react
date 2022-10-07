@@ -9,6 +9,9 @@ export const cartSlice = createSlice({
     reducers: {
         setCart: (state, action) =>{
             return action.payload
+        },
+        restoreCart: (state, action) =>{
+            return []
         }
 
     }
@@ -19,10 +22,10 @@ export const getCartThunk = () => (dispatch) => {
     axios
       .get("https://ecommerce-api-react.herokuapp.com/api/v1/cart", getConfig())
       .then((res) => dispatch(setCart(res.data.data.cart.products)))
-      .catch((err) => console.log(err))
-      .finally(() => dispatch(CHANGELOADING(false)));
+      .catch(() => dispatch(restoreCart()))
+      .finally(() => dispatch(CHANGELOADING(false)))
   };
 
-export const { setCart } = cartSlice.actions;
+export const { setCart, restoreCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -18,7 +18,12 @@ const NavBar = () => {
     setIsOpen (false)
   }
   const openSidebar = () => {
-    setIsOpen (true)
+    if(user){
+      setIsOpen (true)
+    }
+    else{
+      alert('Inicia sesión para utilizar el carrito :)')
+    }
   }
   const toHome = () => {
     dispatch(CHANGELOADING(true))
@@ -45,7 +50,7 @@ const NavBar = () => {
         <div className='logo_container' onClick={toHome}>
           <img src="./images/logo.png" alt="" />
         </div>
-        <Search />
+        <Search  />
         <div className='controls_nav'>
           {
           !user?

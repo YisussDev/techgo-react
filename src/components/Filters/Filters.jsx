@@ -1,26 +1,26 @@
-import React, { useState} from 'react'
-import { FaFilter, FaDollarSign, FaTags } from 'react-icons/fa';
+import React, { useState } from 'react'
+import { FaFilter, FaDollarSign, FaTags, FaArrowDown } from 'react-icons/fa';
 import './Filters.css'
 
 
-const Filters = ({categories, sendFilter,allProducts, sendPriceFilter}) => {
-    const[filtersOpen, setFiltersOpen] = useState(false)
-    const[priceOpen, setPriceOpen] = useState(false)
-    const[categoryOpen, setCategoryOpen] = useState(false)
-    const[priceInitial, setPriceInitial] = useState(10)
+const Filters = ({ categories, sendFilter, allProducts, sendPriceFilter }) => {
+    const [filtersOpen, setFiltersOpen] = useState(false)
+    const [priceOpen, setPriceOpen] = useState(false)
+    const [categoryOpen, setCategoryOpen] = useState(false)
+    const [priceInitial, setPriceInitial] = useState(10)
 
     const changeMin = e => {
         const value = parseInt(e.target.value)
         setPriceInitial(value)
     }
-    
+
     return (
         <div className={`filter_options ${filtersOpen && 'open'}`}>
             <button className='button_filter' onClick={() => setFiltersOpen(!filtersOpen)}>
                 <FaFilter /> Filters
             </button>
             <div className={`price_option ${priceOpen && 'open'}`}>
-                <button onClick={() => setPriceOpen(!priceOpen)}><FaDollarSign /> Price</button>
+                <button onClick={() => setPriceOpen(!priceOpen)}><FaDollarSign /> Price <span style={{ position: 'absolute', right: '10px', rotate: `${priceOpen ? ('180deg') : ('0deg')}`, transition: 'all .4s' }}><FaArrowDown /></span></button>
                 <form onSubmit={sendPriceFilter}>
                     <span>Min</span><br /><input type="number" defaultValue={priceInitial} onChange={changeMin} name="min" id="" /><br />
                     <span>Max</span><br /><input type="number" min={priceInitial} defaultValue={priceInitial} name="max" id="" /><br />
@@ -28,11 +28,11 @@ const Filters = ({categories, sendFilter,allProducts, sendPriceFilter}) => {
                 </form>
             </div>
             <div className={`category_option ${categoryOpen && 'open'}`}>
-                <button onClick={() => setCategoryOpen(!categoryOpen)}><FaTags /> Category</button>
+                <button onClick={() => setCategoryOpen(!categoryOpen)}><FaTags /> Category <span style={{ position: 'absolute', right: '10px', rotate: `${categoryOpen ? ('180deg') : ('0deg')}`, transition: 'all .4s' }}><FaArrowDown /></span></button>
                 <ul>
-                    <li onClick={()=> allProducts()}>All Products</li>
+                    <li onClick={() => allProducts()}>All Products</li>
                     {categories.map(res => (
-                        <li onClick={()=>sendFilter(res.name)} key={res.id}>{res.name}</li>
+                        <li onClick={() => sendFilter(res.name)} key={res.id}>{res.name}</li>
                     ))}
                 </ul>
             </div>

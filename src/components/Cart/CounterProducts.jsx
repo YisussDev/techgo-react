@@ -14,7 +14,7 @@ const CounterProducts = () => {
   },[cart])
 
   return (
-    <h2 style={{color: 'var(--color-thirty)', textAlign: 'end', padding: '10px 20px'}}><strong>Total: </strong>  ${total}.00</h2>
+    <h4 style={{color: 'var(--color-thirty)', textAlign: 'end', padding: '10px 20px'}}><strong>Total: </strong>  ${total}.00</h4>
   )
 }
 

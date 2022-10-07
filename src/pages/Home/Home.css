@@ -1,0 +1,21 @@
+.home {
+    min-height: 1000px;
+    padding-top: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px;
+
+}
+
+@media (min-width: 800px) {
+    .home{
+        padding-top: 150px;
+        padding-left: 200px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 20px;
+    }
+    
+}

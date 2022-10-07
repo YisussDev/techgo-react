@@ -8,6 +8,7 @@ import Search from '../Search/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import { CHANGELOADING } from '../../store/slices/loading.slice';
 import { setUser } from '../../store/slices/user.slice';
+import Swal from 'sweetalert2'
 
 const NavBar = () => {
   const navigate = useNavigate()
@@ -36,6 +37,13 @@ const NavBar = () => {
     dispatch(CHANGELOADING(true))
     dispatch(setUser(''))
     localStorage.clear()
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Session Closed',
+      showConfirmButton: false,
+      timer: 1500,
+    })
     setTimeout(()=>{
       dispatch(CHANGELOADING(false))
     },500)
@@ -58,7 +66,7 @@ const NavBar = () => {
                 <FaUser />
               </div>
               :
-              <div className='button_sidebar' style={{color: 'green'}} onClick={()=> navigate('/')}>
+              <div className='button_sidebar' style={{color: 'green'}} onClick={()=> navigate('/user')}>
                 <FaUser />
               </div>
           }

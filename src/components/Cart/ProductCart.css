@@ -1,7 +1,7 @@
 .product_cart{
     background-color: var(--color-first);
     border-radius: 10px;
-    height: 80px;
+    height: 120px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -35,12 +35,26 @@
 }
 .product_cart-info> div > button {
     height: 30px;
+    padding: 0;
+    margin: 0;
     width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
+}
+.product_cart-info> div > button > svg {
+    pointer-events: none;
 }
 .product_cart-delete{
     height: 40px;
     width: 40px;
     border-radius: 50%;
     background-color: var(--color-thirty);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.product_cart-delete > svg {
+    pointer-events: none;
 }

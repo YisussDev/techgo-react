@@ -6,8 +6,12 @@
     top: 0;
     right: -200%;
     padding: 10px 10px;
-    padding-top: 100px;
+    padding-top: 80px;
     transition: all 1s ease-out;
+}
+.sidebar p, h2, h3{
+    margin: 0;
+    padding: 0;
 }
 .show{
     right: 0;
@@ -15,7 +19,7 @@
 }
 .sidebar > ul {
     padding: 0;
-    height: 85%;
+    height: 75%;
     overflow-y: auto;
     row-gap: 10px;
 }
@@ -55,6 +59,7 @@
 .purchase_button{
     height: 50px;
     width: 100%;
+    border-radius: 10px;
     background-color: var(--color-thirty);
     color: white;
     transition: all .5s;

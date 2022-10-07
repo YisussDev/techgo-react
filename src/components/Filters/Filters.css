@@ -47,12 +47,12 @@
     background-color: var(--color-first);
     color: white;
     width: 100px;
+    border-radius: 10px;
 }
 .category_option{
     max-height: 40px;
     overflow: hidden;
     transition: all 1s ease-in-out;
-    background-color: antiquewhite;
     text-align: center;
 }
 .category_option > button{
@@ -80,6 +80,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all .5s;
+}
+.category_option > ul > li:hover{
+    cursor:pointer;
+    background-color: var(--color-secondary);
+    color: white;
 }
 @media (min-width: 550px) and (max-width:800px){
     .filter_options{

@@ -7,6 +7,8 @@ import { CHANGELOADING } from '../../store/slices/loading.slice'
 import { useDispatch, useSelector } from 'react-redux'
 import getConfig from '../../utils/getConfig'
 import { getCartThunk } from '../../store/slices/cart.slice'
+import Swal from 'sweetalert2'
+
 
 
 const ProducDetail = () => {
@@ -32,7 +34,6 @@ const ProducDetail = () => {
       setItemSelected(itemSelected-1)
     }
   }
-
   const nextImage = () => {
     if(imagePosition < 2){
       setImagePosition(imagePosition+1)
@@ -59,7 +60,16 @@ const ProducDetail = () => {
         newQuantity: parseInt(find[0].productsInCart.quantity) + itemSelected
       }
       axios.patch('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productReload, getConfig())
-      .then(()=> dispatch(getCartThunk()))
+      .then(()=>{
+        dispatch(getCartThunk())
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Added to Cart',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      })
     }
     else{
       const productNew= {
@@ -67,7 +77,16 @@ const ProducDetail = () => {
         quantity: itemSelected
       }
       axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productNew, getConfig())
-      .then(()=> dispatch(getCartThunk()))
+      .then(()=> {
+        dispatch(getCartThunk())
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Added to Cart',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      })
     }
   }
   

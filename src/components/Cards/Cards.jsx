@@ -6,6 +6,7 @@ import axios from 'axios'
 import getConfig from '../../utils/getConfig'
 import { getCartThunk } from '../../store/slices/cart.slice'
 import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 
 const Cards = ({title, productImgs, id, price, category}) => {
   const dispatch = useDispatch()
@@ -21,7 +22,16 @@ const Cards = ({title, productImgs, id, price, category}) => {
         newQuantity: parseInt(find[0].productsInCart.quantity) + 1
       }
       axios.patch('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productReload, getConfig())
-      .then(()=> dispatch(getCartThunk()))
+      .then(()=> {
+        dispatch(getCartThunk())
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Added to Cart',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      })
     }
     else{
       const productNew= {
@@ -29,7 +39,16 @@ const Cards = ({title, productImgs, id, price, category}) => {
         quantity: 1
       }
       axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productNew, getConfig())
-      .then(()=> dispatch(getCartThunk()))
+      .then(()=> {
+        dispatch(getCartThunk())
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Added to Cart',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      })
     }
   }
 

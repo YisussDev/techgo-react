@@ -2,10 +2,11 @@ import React from 'react'
 import './Login.css'
 import { useForm } from "react-hook-form";
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CHANGELOADING } from '../../store/slices/loading.slice';
 import { setUser } from '../../store/slices/user.slice';
+import Swal from 'sweetalert2'
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
@@ -20,7 +21,17 @@ const Login = () => {
       data.password = data.password.trim();
       dispatch(CHANGELOADING(true))
       axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/users/login', data)
-        .then(res => localStorage.setItem('token', res.data.data.token))
+        .then(res =>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Logged Successfully',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+          localStorage.setItem('token', res.data.data.token)
+          localStorage.setItem('user', res.data.data?.user?.firstName + ' ' + res.data.data?.user?.lastName)
+        })
         .then(()=> dispatch(setUser(localStorage.getItem('token'))))
         .then(()=> navigate('/'))
         .then(()=> dispatch(CHANGELOADING(false)))
@@ -50,6 +61,7 @@ const Login = () => {
             </label><br />
             <button type='submit'>Sign In!</button>
           </form>
+          Not Registered? <Link to='/register'>Sign up</Link>
         </div>
       </div>
     </>

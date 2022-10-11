@@ -53,11 +53,11 @@ const Login = () => {
           <form onSubmit={handleSubmit(submit)}>
             <label htmlFor="">
               Email: <br />
-              <input type="text" {...register('email')} className='input_login' placeholder='Enter your email...' />
+              <input type="text" {...register('email')} autoComplete='off' className='input_login' placeholder='Enter your email...' />
             </label>
             <label htmlFor="">
               Password: <br />
-              <input type="text" {...register('password')} className='input_login' placeholder='Enter your password...' />
+              <input type="password" {...register('password')} autoComplete='off' className='input_login' placeholder='Enter your password...' />
             </label><br />
             <button type='submit'>Sign In!</button>
           </form>

@@ -70,7 +70,7 @@ const NavBar = () => {
                 <FaUser />
               </div>
           }
-          <div title='Purchases' className='button_sidebar'>
+          <div title='Purchases' onClick={()=>navigate('/purchases')} className='button_sidebar'>
             <FaShoppingBag />
           </div>
           <div title='Cart' className='button_sidebar' onClick={openSidebar}>

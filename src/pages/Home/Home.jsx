@@ -30,6 +30,7 @@ const Home = () => {
     }, 1000)
   }
   const allProducts = () => {
+    window.scroll(0,0)
     dispatch(CHANGELOADING(true))
     setData(products)
     setTimeout(()=> {

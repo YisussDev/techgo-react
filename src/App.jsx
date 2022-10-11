@@ -14,6 +14,7 @@ import { getCartThunk } from './store/slices/cart.slice';
 import User from './pages/User/User';
 import Register from './pages/Register/Register';
 import Footer from './components/Footer/Footer';
+import Purchases from './pages/Purchases/Purchases';
 
 function App() {
   const token = localStorage.getItem('token')
@@ -39,6 +40,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/purchases' element={<Purchases />} />
         <Route path='/user' element={<User />} />
         <Route path='/product/:id' element={<ProductDetail />} />
         <Route path='/search/:name' element={<SearchPage />} />

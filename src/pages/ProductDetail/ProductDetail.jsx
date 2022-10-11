@@ -20,6 +20,7 @@ const ProducDetail = () => {
   const {id} = useParams()
 
   useEffect(()=>{
+    window.scroll(0,0)
     dispatch(CHANGELOADING(true))
     axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products/${id}`)
     .then(res => setData(res.data.data.product))

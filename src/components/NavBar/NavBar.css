@@ -1,6 +1,8 @@
 .nav_container{
     position: fixed;
     z-index: 100000;
+    top:0;
+    left: 0;
 }
 .infoNav{
     background-color: var(--color-secondary);

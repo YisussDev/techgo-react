@@ -13,6 +13,11 @@ const Filters = ({ categories, sendFilter, allProducts, sendPriceFilter }) => {
         const value = parseInt(e.target.value)
         setPriceInitial(value)
     }
+    const submitPrice = e => {
+        setFiltersOpen(!filtersOpen)
+         window.scroll(0,0)
+        sendPriceFilter(e)
+    }
 
     return (
         <div className={`filter_options ${filtersOpen && 'open'}`}>
@@ -21,7 +26,7 @@ const Filters = ({ categories, sendFilter, allProducts, sendPriceFilter }) => {
             </button>
             <div className={`price_option ${priceOpen && 'open'}`}>
                 <button onClick={() => setPriceOpen(!priceOpen)}><FaDollarSign /> Price <span style={{ position: 'absolute', right: '10px', rotate: `${priceOpen ? ('180deg') : ('0deg')}`, transition: 'all .4s' }}><FaArrowDown /></span></button>
-                <form onSubmit={sendPriceFilter}>
+                <form onSubmit={submitPrice}>
                     <span>Min</span><br /><input type="number" defaultValue={priceInitial} onChange={changeMin} name="min" id="" /><br />
                     <span>Max</span><br /><input type="number" min={priceInitial} defaultValue={priceInitial} name="max" id="" /><br />
                     <button type='submit'>Filter!</button>
@@ -32,7 +37,7 @@ const Filters = ({ categories, sendFilter, allProducts, sendPriceFilter }) => {
                 <ul>
                     <li onClick={() => allProducts()}>All Products</li>
                     {categories.map(res => (
-                        <li onClick={() => sendFilter(res.name)} key={res.id}>{res.name}</li>
+                        <li onClick={() => {sendFilter(res.name); setFiltersOpen(!filtersOpen); window.scroll(0,0)}} key={res.id}>{res.name}</li>
                     ))}
                 </ul>
             </div>

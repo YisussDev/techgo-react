@@ -11,7 +11,7 @@ const Purchases = () => {
   const { user } = useSelector(state => state)
   useEffect(()=>{
     if(user){
-      axios.get('https://ecommerce-api-react.herokuapp.com/api/v1/purchases/', getConfig())
+      axios.get('https://e-commerce-api.academlo.tech/api/v1/purchases/', getConfig())
       .then(res => setData(res.data.data.purchases))
       .catch(err => console.error(err))
     }

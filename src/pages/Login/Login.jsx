@@ -20,7 +20,7 @@ const Login = () => {
       data.email = data.email.trim();
       data.password = data.password.trim();
       dispatch(CHANGELOADING(true))
-      axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/users/login', data)
+      axios.post('https://e-commerce-api.academlo.tech/api/v1/users/login', data)
         .then(res =>{
           Swal.fire({
             position: 'center',

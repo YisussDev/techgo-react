@@ -20,7 +20,7 @@ export const cartSlice = createSlice({
 export const getCartThunk = () => (dispatch) => {
     dispatch(CHANGELOADING(true));
     axios
-      .get("https://ecommerce-api-react.herokuapp.com/api/v1/cart", getConfig())
+      .get("https://e-commerce-api.academlo.tech/api/v1/cart", getConfig())
       .then((res) => dispatch(setCart(res.data.data.cart.products)))
       .catch(() => dispatch(restoreCart()))
       .finally(() => dispatch(CHANGELOADING(false)))

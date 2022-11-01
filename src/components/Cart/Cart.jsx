@@ -13,7 +13,7 @@ const Cart = ({isOpen, closeSidebar}) => {
   const {cart} = useSelector(state => state)
 
   const purchaseCart = () => {
-    axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/purchases',{},getConfig())
+    axios.post('https://e-commerce-api.academlo.tech/api/v1/purchases',{},getConfig())
     .then(() => dispatch(getCartThunk()))
     .catch(error => console.log(error))
   }

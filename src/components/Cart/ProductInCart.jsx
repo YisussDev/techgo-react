@@ -32,7 +32,7 @@ const ProductInCart = ({title, quantity, id, price, category}) => {
       newQuantity: quantity-1
     }
     if(quantity > 1){
-      axios.patch('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productUpdate, getConfig())
+      axios.patch('https://e-commerce-api.academlo.tech/api/v1/cart', productUpdate, getConfig())
       .then(()=>{
         dispatch(getCartThunk())
         Swal.fire({
@@ -40,7 +40,7 @@ const ProductInCart = ({title, quantity, id, price, category}) => {
           icon: 'success',
           title: 'Updated Product',
           showConfirmButton: false,
-          timer: 1500
+          timer: 500
         })
       })
     }
@@ -63,7 +63,7 @@ const ProductInCart = ({title, quantity, id, price, category}) => {
       id: id,
       newQuantity: quantity+1
     }
-      axios.patch('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productUpdate, getConfig())
+      axios.patch('https://e-commerce-api.academlo.tech/api/v1/cart', productUpdate, getConfig())
       .then(()=>{
         dispatch(getCartThunk())
         Swal.fire({
@@ -71,7 +71,7 @@ const ProductInCart = ({title, quantity, id, price, category}) => {
           icon: 'success',
           title: 'Updated Product',
           showConfirmButton: false,
-          timer: 1500
+          timer: 500
         })
       })
   }

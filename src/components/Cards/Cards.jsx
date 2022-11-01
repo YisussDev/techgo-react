@@ -21,7 +21,7 @@ const Cards = ({title, productImgs, id, price, category}) => {
         id: parseInt(id),
         newQuantity: parseInt(find[0].productsInCart.quantity) + 1
       }
-      axios.patch('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productReload, getConfig())
+      axios.patch('https://e-commerce-api.academlo.tech/api/v1/cart', productReload, getConfig())
       .then(()=> {
         dispatch(getCartThunk())
         Swal.fire({
@@ -38,7 +38,7 @@ const Cards = ({title, productImgs, id, price, category}) => {
         id: parseInt(id),
         quantity: 1
       }
-      axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productNew, getConfig())
+      axios.post('https://e-commerce-api.academlo.tech/api/v1/cart', productNew, getConfig())
       .then(()=> {
         dispatch(getCartThunk())
         Swal.fire({

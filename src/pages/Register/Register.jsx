@@ -14,20 +14,20 @@ const Register = () => {
   
   
     const submit = data => {
-      if (data.email.length >= 5 && data.password.length >= 5 && data.firstName.length >= 5 && data.lastName.length >= 5 && data.phone.length >= 5 ) {
+      if (data.email.length >= 5 && data.password.length >= 5 && data.firstName.length >= 5 && data.lastName.length >= 5 && data.phone.length >= 10 ) {
         data.email = data.email.trim();
         data.password = data.password.trim();
         data.firstName = data.firstName.trim();
         data.lastName = data.lastName.trim();
         data.role = 'admin'
         dispatch(CHANGELOADING(true))
-        axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/users', data)
+        axios.post('https://e-commerce-api.academlo.tech/api/v1/users/', data)
           .then(res => navigate('/') )
           .then(()=> dispatch(CHANGELOADING(false)))
           .catch(err => console.log(err))
       }
       else {
-        alert('rellena los campos plis')
+        alert('Debes llenar los datos correctamente. /n Correo válido. /n Numero Telefónico +10 caracteres')
       }
     }
     

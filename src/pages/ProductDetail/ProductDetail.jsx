@@ -22,7 +22,7 @@ const ProducDetail = () => {
   useEffect(()=>{
     window.scroll(0,0)
     dispatch(CHANGELOADING(true))
-    axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products/${id}`)
+    axios.get(`https://e-commerce-api.academlo.tech/api/v1/products/${id}`)
     .then(res => setData(res.data.data.product))
     .catch(error => console.log(error))
   },[id,dispatch])
